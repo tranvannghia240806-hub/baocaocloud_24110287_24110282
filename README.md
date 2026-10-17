@@ -46,8 +46,8 @@ Sản phẩm dự kiến:
 | Security Group | `HA-Web-ALB-SG` (HTTP 80 từ `0.0.0.0/0`), `HA-Web-EC2-SG` (HTTP 80 chỉ từ `HA-Web-ALB-SG`) |
 | AMI / loại instance | Amazon Linux 2023 / `t3.micro` |
 | Auto Scaling Group | min 1 / desired 1 / max 4 (không vượt 4 để giữ giới hạn 9 EC2 mỗi region) |
-| Target Tracking Policy | `ASGAverageCPUUtilization`, target 50% |
-| Instance warm-up | 60–120 giây (dự kiến, điều chỉnh theo số liệu đo thực tế) |
+| Target Tracking Policy | `HA-Web-CPU-50`: `ASGAverageCPUUtilization`, target 50% |
+| Instance warm-up | 120 giây (đã cấu hình ở tuần 2, sẽ điều chỉnh theo số liệu đo ở tuần 3) |
 | Công cụ tạo tải | `ab` / `hey` / `locust` |
 
 ## Quy ước
@@ -61,23 +61,32 @@ Sản phẩm dự kiến:
 ## Tiến độ
 
 - [x] **Tuần 1**: tìm hiểu dịch vụ, thiết kế kiến trúc, vẽ sơ đồ, dựng nền tảng (VPC, subnet, IGW, Route Table, Security Group), gắn tag
-- [ ] **Tuần 2**: Launch Template, Target Group, ALB, ASG, Target Tracking Policy, warm-up; kiểm thử từng thành phần
+- [x] **Tuần 2**: Launch Template, Target Group, ALB, ASG, Target Tracking Policy, warm-up; kiểm thử từng thành phần
 - [ ] **Tuần 3**: tích hợp, bảo mật, giám sát CloudWatch, kịch bản tải, IaC (nếu có)
 - [ ] **Tuần 4**: kiểm thử tổng thể, tối ưu chi phí, dọn dẹp tài nguyên, báo cáo chi phí, báo cáo phân tích, video demo (≤ 10 phút)
 
 ## Cấu trúc repo
 
 ```text
-ha-web-alb-asg/
+.
 ├── README.md
 ├── .gitignore
 ├── docs/
-│   ├── architecture.png        Sơ đồ kiến trúc
-│   ├── architecture.mmd        Sơ đồ dạng Mermaid
-│   └── bao-cao-tuan-1.docx     Báo cáo tuần 1
-├── scripts/                    User data, script tạo tải (từ tuần 2)
-└── templates/                  Template CloudFormation (nếu làm IaC)
+│   ├── architecture.png                           Sơ đồ kiến trúc
+│   ├── Bao_cao_tuan_1.docx                        Báo cáo tuần 1
+│   ├── Bao_cao_tuan_2.docx                        Báo cáo tuần 2
+│   └── Bang_phan_cong_va_worklog_tuan_2.docx      Worklog tuần 2
+├── scripts/
+│   └── user-data.sh                               User data của Launch Template HA-Web-LT
+└── templates/                                     Template CloudFormation (nếu làm IaC)
 ```
+
+## Kết quả tuần 2
+
+- Launch Template `HA-Web-LT`, Target Group `HA-Web-TG`, Application Load Balancer `HA-Web-ALB`, Auto Scaling Group `HA-Web-ASG` (min 1 – max 4) và Target Tracking Policy `HA-Web-CPU-50` (CPU 50%, warm-up 120 giây) đã triển khai và kiểm thử trên AWS Learner Lab.
+- Đã kiểm thử: cân bằng tải qua 2 AZ, Security Group chặn truy cập trực tiếp vào EC2, ASG tự thay thế instance bị terminate, policy tự scale-in qua alarm `AlarmLow`.
+- Cuối buổi đã dọn dẹp: ASG min = 0, desired = 0 và xóa ALB để tiết kiệm ngân sách Lab.
+- Chi tiết và ảnh minh chứng: xem `docs/Bao_cao_tuan_2.docx`.
 
 ## Sử dụng AI
 
