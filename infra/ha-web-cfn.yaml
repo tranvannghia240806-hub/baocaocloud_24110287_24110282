@@ -1,0 +1,179 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >-
+  HA-Web (tuan 3) - Dung ALB, Target Group, Auto Scaling Group va Target Tracking
+  Policy bang CloudFormation. Dung lai VPC, Security Group va Launch Template da tao thu cong.
+  Khong tao IAM (Learner Lab) - Launch Template da gan san LabInstanceProfile.
+
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: HA-Web-vpc
+    Default: vpc-027bee6687b4d91d7
+  Subnet1Id:
+    Type: AWS::EC2::Subnet::Id
+    Description: HA-Web-subnet-public1-us-east-1a
+    Default: subnet-08d2aec24d05c1193
+  Subnet2Id:
+    Type: AWS::EC2::Subnet::Id
+    Description: HA-Web-subnet-public2-us-east-1b
+    Default: subnet-0387f776144dc5617
+  AlbSecurityGroupId:
+    Type: AWS::EC2::SecurityGroup::Id
+    Description: HA-Web-ALB-SG
+    Default: sg-06da2b2da08e8461c
+  LaunchTemplateId:
+    Type: String
+    Description: HA-Web-LT (Launch Template da co)
+    Default: lt-0617016b7bdc07dcf
+  LaunchTemplateVersion:
+    Type: String
+    Description: Phien ban Launch Template (doi thanh 2 neu da tao v2)
+    Default: "1"
+  MinSize:
+    Type: Number
+    Default: 1
+  DesiredCapacity:
+    Type: Number
+    Default: 1
+  MaxSize:
+    Type: Number
+    Default: 4
+    MaxValue: 4
+    Description: Khong vuot 4 theo yeu cau de tai
+  CpuTarget:
+    Type: Number
+    Default: 50
+  WarmupSeconds:
+    Type: Number
+    Default: 120
+  AccessLogBucket:
+    Type: String
+    Default: ""
+    Description: Ten S3 bucket nhan ALB access log (de trong = khong bat access log)
+  ProjectTag:
+    Type: String
+    Default: HAWeb
+  OwnerTag:
+    Type: String
+    Default: "24110287"
+
+Conditions:
+  EnableAccessLogs: !Not [!Equals [!Ref AccessLogBucket, ""]]
+
+Resources:
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: HA-Web-CFN-TG
+      Protocol: HTTP
+      Port: 80
+      VpcId: !Ref VpcId
+      TargetType: instance
+      HealthCheckProtocol: HTTP
+      HealthCheckPath: /
+      HealthCheckIntervalSeconds: 10
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 2
+      UnhealthyThresholdCount: 2
+      Matcher:
+        HttpCode: "200"
+      TargetGroupAttributes:
+        - Key: deregistration_delay.timeout_seconds
+          Value: "30"
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectTag
+        - Key: Owner
+          Value: !Ref OwnerTag
+
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: HA-Web-CFN-ALB
+      Type: application
+      Scheme: internet-facing
+      IpAddressType: ipv4
+      Subnets:
+        - !Ref Subnet1Id
+        - !Ref Subnet2Id
+      SecurityGroups:
+        - !Ref AlbSecurityGroupId
+      LoadBalancerAttributes:
+        - Key: access_logs.s3.enabled
+          Value: !If [EnableAccessLogs, "true", "false"]
+        - !If
+          - EnableAccessLogs
+          - Key: access_logs.s3.bucket
+            Value: !Ref AccessLogBucket
+          - !Ref AWS::NoValue
+        - !If
+          - EnableAccessLogs
+          - Key: access_logs.s3.prefix
+            Value: alb
+          - !Ref AWS::NoValue
+      Tags:
+        - Key: Project
+          Value: !Ref ProjectTag
+        - Key: Owner
+          Value: !Ref OwnerTag
+
+  Listener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref LoadBalancer
+      Protocol: HTTP
+      Port: 80
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref TargetGroup
+
+  AutoScalingGroup:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    DependsOn: Listener
+    Properties:
+      AutoScalingGroupName: HA-Web-CFN-ASG
+      MinSize: !Ref MinSize
+      MaxSize: !Ref MaxSize
+      DesiredCapacity: !Ref DesiredCapacity
+      VPCZoneIdentifier:
+        - !Ref Subnet1Id
+        - !Ref Subnet2Id
+      LaunchTemplate:
+        LaunchTemplateId: !Ref LaunchTemplateId
+        Version: !Ref LaunchTemplateVersion
+      TargetGroupARNs:
+        - !Ref TargetGroup
+      HealthCheckType: ELB
+      HealthCheckGracePeriod: 120
+      MetricsCollection:
+        - Granularity: 1Minute
+      Tags:
+        - Key: Name
+          Value: HA-Web-CFN-instance
+          PropagateAtLaunch: true
+        - Key: Project
+          Value: !Ref ProjectTag
+          PropagateAtLaunch: true
+        - Key: Owner
+          Value: !Ref OwnerTag
+          PropagateAtLaunch: true
+
+  CpuTargetTrackingPolicy:
+    Type: AWS::AutoScaling::ScalingPolicy
+    Properties:
+      AutoScalingGroupName: !Ref AutoScalingGroup
+      PolicyType: TargetTrackingScaling
+      EstimatedInstanceWarmup: !Ref WarmupSeconds
+      TargetTrackingConfiguration:
+        PredefinedMetricSpecification:
+          PredefinedMetricType: ASGAverageCPUUtilization
+        TargetValue: !Ref CpuTarget
+
+Outputs:
+  AlbDnsName:
+    Description: DNS cua ALB do CloudFormation tao
+    Value: !GetAtt LoadBalancer.DNSName
+  AutoScalingGroupName:
+    Value: !Ref AutoScalingGroup
+  TargetGroupName:
+    Value: !GetAtt TargetGroup.TargetGroupName
