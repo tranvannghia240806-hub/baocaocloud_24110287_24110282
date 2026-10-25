@@ -1,0 +1,44 @@
+This is ApacheBench, Version 2.3 <$Revision: 1934973 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking HA-Web-ALB-892106701.us-east-1.elb.amazonaws.com (be patient)
+
+
+Server Software:        Apache/2.4.69
+Server Hostname:        HA-Web-ALB-892106701.us-east-1.elb.amazonaws.com
+Server Port:            80
+
+Document Path:          /cgi-bin/load.sh
+Document Length:        3 bytes
+
+Concurrency Level:      20
+Time taken for tests:   900.735 seconds
+Complete requests:      18006
+Failed requests:        5
+   (Connect: 0, Receive: 0, Length: 5, Exceptions: 0)
+Non-2xx responses:      5
+Total transferred:      2830458 bytes
+HTML transferred:       54628 bytes
+Requests per second:    19.99 [#/sec] (mean)
+Time per request:       1000.483 [ms] (mean)
+Time per request:       50.024 [ms] (mean, across all concurrent requests)
+Transfer rate:          3.07 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.4      1      10
+Processing:     1  999  20.3    999    1166
+Waiting:        1   48  46.4     34     455
+Total:          1  999  20.3   1000    1166
+
+Percentage of the requests served within a certain time (ms)
+  50%   1000
+  66%   1000
+  75%   1001
+  80%   1001
+  90%   1002
+  95%   1005
+  98%   1014
+  99%   1026
+ 100%   1166 (longest request)
