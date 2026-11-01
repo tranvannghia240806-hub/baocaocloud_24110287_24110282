@@ -34,6 +34,8 @@ Sản phẩm dự kiến:
 | Elastic Load Balancing (ALB) | Phân phối lưu lượng, kiểm tra health check |
 | EC2 Auto Scaling | Tự động tăng/giảm số instance, thay thế instance lỗi |
 | Amazon CloudWatch | Metric CPU, biểu đồ, dữ liệu cho scaling |
+| Amazon S3 | Lưu ALB access log (đã xóa bucket ở tuần 4) |
+| AWS CloudTrail | Tra giờ tạo/xóa ALB để ước tính chi phí (tuần 4) |
 
 ## Thông số thiết kế
 
@@ -48,7 +50,7 @@ Sản phẩm dự kiến:
 | Auto Scaling Group | min 1 / desired 1 / max 4 (không vượt 4 để giữ giới hạn 9 EC2 mỗi region) |
 | Target Tracking Policy | `HA-Web-CPU-50`: `ASGAverageCPUUtilization`, target 50% |
 | Instance warm-up | 120 giây (giữ nguyên; đo ở tuần 3: instance mới Healthy sau khoảng 1 phút đến 1 phút 10 giây kể từ lúc ASG tăng desired) |
-| Công cụ tạo tải | `scripts/load-test.sh` (tuần 3, lần 1) và `ab` (tuần 3, lần 2) |
+| Công cụ tạo tải | `scripts/load-test.sh` (tuần 3 lần 1 và tuần 4 lần 3), `ab` (tuần 3 lần 2) |
 
 ## Quy ước
 
@@ -63,7 +65,7 @@ Sản phẩm dự kiến:
 - [x] **Tuần 1**: tìm hiểu dịch vụ, thiết kế kiến trúc, vẽ sơ đồ, dựng nền tảng (VPC, subnet, IGW, Route Table, Security Group), gắn tag
 - [x] **Tuần 2**: Launch Template, Target Group, ALB, ASG, Target Tracking Policy, warm-up; kiểm thử từng thành phần
 - [x] **Tuần 3**: tích hợp, bảo mật, giám sát CloudWatch, kịch bản tải thật, ALB access log ra S3, IaC (CloudFormation)
-- [ ] **Tuần 4**: kiểm thử tổng thể, tối ưu chi phí, dọn dẹp tài nguyên, báo cáo chi phí, báo cáo phân tích, video demo (≤ 10 phút)
+- [x] **Tuần 4**: kiểm thử tổng thể, tối ưu chi phí, dọn dẹp tài nguyên, báo cáo chi phí, báo cáo phân tích, video demo (≤ 10 phút)
 
 ## Cấu trúc repo
 
@@ -77,11 +79,14 @@ Sản phẩm dự kiến:
 │   ├── Bao_cao_tuan_2.docx                        Báo cáo tuần 2
 │   ├── Bang_phan_cong_va_worklog_tuan_2.docx      Worklog tuần 2
 │   ├── Bao_cao_tuan_3.docx                        Báo cáo tuần 3
+│   ├── Bao_cao_tuan_4.docx / .md                  Báo cáo tuần 4 kiêm báo cáo phân tích cuối kỳ
 │   ├── data/tuan3/                                Số liệu đo tuần 3 (CSV scaling, kết quả ab, log lỗi 502)
-│   └── images/                                    Ảnh minh chứng (tuan2/, tuan3/)
+│   ├── data/tuan4/                                Số liệu tuần 4 (log kiểm thử AZ, tải lần 3, chi phí, ConsumedLCUs)
+│   └── images/                                    Ảnh minh chứng (tuan2/, tuan3/, tuan4/)
 ├── scripts/
 │   ├── user-data.sh                               User data của Launch Template HA-Web-LT
-│   └── load-test.sh                               Script tạo tải và ghi mốc scale-out/scale-in (tuần 3)
+│   ├── load-test.sh                               Script tạo tải và ghi mốc scale-out/scale-in (tuần 3)
+│   └── cost-estimate.py                           Ước tính chi phí theo mốc CloudTrail (tuần 4)
 ├── infra/
 │   └── ha-web-cfn.yaml                            Template CloudFormation: ALB, Target Group, ASG, Target Tracking (tuần 3)
 └── templates/                                     Thư mục dự phòng
@@ -105,9 +110,21 @@ Sản phẩm dự kiến:
 - **Hạn chế đã ghi nhận**: 5 request mã 502 ở lần tải 2 (chưa xác định nguyên nhân), thời gian phản hồi do `ab` đo (khoảng 1000 ms) lệch với `TargetResponseTime` trên dashboard (khoảng 85 ms) chưa kiểm chứng, mô phỏng sự cố 1 AZ chuyển sang tuần 4.
 - Chi tiết, số liệu và ảnh minh chứng: xem `docs/Bao_cao_tuan_3.docx`.
 
+## Kết quả tuần 4
+
+- **Kiểm thử mất instance ở một AZ**: terminate một instance rồi ghi mã HTTP từng giây qua ALB; instance thay thế do ASG tạo lại ở AZ ban đầu. Kiểm thử trực tiếp lại ngày 01/11 (quay trong video): 528 dòng, 523 mã 200, 3 mã 502, 2 mã 000, hai đợt ghi; do còn request lỗi nên không khẳng định không gián đoạn. Đây là mất một instance, không phải mô phỏng sự cố cả AZ.
+- **Tải lần 3**: chạy tải đủ mốc T0–T9 (17 974 request); script bị CloudShell ngắt giữa chừng nên một số mốc lấy từ Activity history và CloudWatch Alarms (ghi rõ trong báo cáo).
+- **Phân tích ALB access log**: 49 076 bản ghi từ 106 file `.log.gz` trên S3 (log thô chứa địa chỉ IP nên không đưa lên Git).
+- **Chi phí**: ước tính khoảng 0,78 USD đến hết Ngày 3 bằng `scripts/cost-estimate.py`, trong đó ALB và IPv4 của ALB chiếm khoảng 75%; chưa gồm đầy đủ LCU, CloudWatch và EC2 của phiên Ngày 4, và là ước tính, không phải hóa đơn. Số Used trên Learner Lab hiển thị 1,5 / 50 USD.
+- **Tối ưu chi phí**: thử scheduled scaling (giảm về 0 rồi tăng lại, scheduled action tự xóa sau khi chạy), theo dõi `CPUSurplusCreditsCharged` của t3.micro, và xóa ALB ngay sau mỗi buổi kiểm thử.
+- **Dọn dẹp (01/11/2026)**: đã xóa ASG, ALB, Launch Template, Target Group, alarm, dashboard và S3 bucket log (135 object trước khi xóa); Volumes và Elastic IP trống. VPC, subnet, Internet Gateway và Security Group không tính phí nên được giữ lại. Chưa Reset Lab.
+- **Video demo** (09:45, YouTube không công khai): https://youtu.be/SzbixCAcb0s
+- **Hạn chế**: tải lần 3 thiếu dòng CSV trong khoảng scale-in; log AZ ngày 01/11 gồm hai đợt ghi riêng; chi phí chưa đầy đủ mọi dịch vụ; chưa có bản sao độc lập của toàn bộ log ALB thô.
+- Chi tiết, số liệu và ảnh minh chứng: xem `docs/Bao_cao_tuan_4.docx` (hoặc `.md`).
+
 ## Sử dụng AI
 
-Nhóm có dùng AI (Claude) để tham khảo, hỗ trợ thiết kế và gỡ lỗi. Mọi tài nguyên đều do nhóm tự triển khai và chạy thật trên AWS Learner Lab.
+Nhóm có dùng AI (Claude, ChatGPT) để tham khảo, hỗ trợ thiết kế và gỡ lỗi. Mọi tài nguyên đều do nhóm tự triển khai và chạy thật trên AWS Learner Lab.
 
 | Phần công việc | Mức độ hỗ trợ của AI |
 | --- | --- |
@@ -115,3 +132,4 @@ Nhóm có dùng AI (Claude) để tham khảo, hỗ trợ thiết kế và gỡ 
 | Dashboard, alarm, access log, rà soát bảo mật | AI gợi ý các bước; nhóm tự thực hiện trên AWS và chụp minh chứng |
 | Đối chiếu và phân tích số liệu (CSV, log ALB, ảnh console) | AI hỗ trợ tính khoảng thời gian và gợi ý lệnh kiểm tra; nhóm tự chạy lệnh và đối chiếu với console |
 | Khung báo cáo tuần 3 | AI soạn khung; nhóm điền số liệu đo thật và nhận xét |
+| Script `cost-estimate.py`, đối chiếu số liệu chi phí và log, báo cáo tuần 4 | AI hỗ trợ soạn script, hướng dẫn quy trình và soạn, rà báo cáo; nhóm tự chạy lệnh trên AWS, quay video và kiểm chứng kết quả |
