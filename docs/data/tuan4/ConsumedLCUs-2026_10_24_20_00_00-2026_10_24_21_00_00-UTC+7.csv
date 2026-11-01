@@ -1,0 +1,7 @@
+Id,m1
+StatusCode,Complete
+Messages,
+Full label,us-east-1:AWS/ApplicationELB LoadBalancer:app/HA-Web-CFN-ALB/4108470e36fd8b47 ConsumedLCUs Sum 3600
+Label,app/HA-Web-CFN-ALB/4108470e36fd8b47 Sum
+2026/10/24 20:00:00,0
+2026/10/24 21:00:00,0.0000722222222222222

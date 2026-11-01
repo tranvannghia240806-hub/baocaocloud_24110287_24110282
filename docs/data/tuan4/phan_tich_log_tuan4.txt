@@ -1,0 +1,453 @@
+==============================================
+ PHAN TICH ALB ACCESS LOG
+ Thu muc : /home/cloudshell-user/alblogs
+ Cua so  : (dau) -> (cuoi) (UTC)
+==============================================
+
+1) TONG QUAN
+  So dong log      : 49076
+  Dong dau (UTC)   : 2026-10-23T16:18:30.757741Z
+  Dong cuoi (UTC)  : 2026-10-29T12:52:39.793308Z
+
+2) MA TRANG THAI DO ALB TRA VE (elb_status_code)
+  200 : 48905
+  400 : 14
+  403 : 1
+  404 : 20
+  460 : 5
+  501 : 2
+  502 : 44
+  503 : 85
+
+3) MA TRANG THAI CUA TARGET (target_status_code, '-' = khong ghi nhan ma tu target)
+  - : 148
+  200 : 48905
+  403 : 1
+  404 : 20
+  501 : 2
+
+4) SO REQUEST THEO PHUT (UTC) - chi in khi co chi dinh cua so thoi gian
+  (bo qua: khong co cua so; so request theo gio ben duoi)
+  2026-10-23T16h : 9
+  2026-10-23T17h : 2
+  2026-10-23T18h : 1
+  2026-10-23T19h : 16
+  2026-10-23T20h : 11
+  2026-10-23T21h : 6
+  2026-10-23T22h : 3
+  2026-10-23T23h : 5
+  2026-10-24T00h : 12002
+  2026-10-24T01h : 5
+  2026-10-24T02h : 7
+  2026-10-24T03h : 18027
+  2026-10-24T13h : 105
+  2026-10-24T14h : 3
+  2026-10-29T11h : 6413
+  2026-10-29T12h : 12461
+
+5) PHAN BO THEO TARGET (can bang tai; '-' = khong co target)
+  10.0.26.50 : 20770
+  10.0.19.246 : 10698
+  10.0.5.134 : 3759
+  10.0.2.206 : 3736
+  10.0.20.37 : 1960
+  10.0.9.203 : 1945
+  10.0.16.110 : 1919
+  10.0.14.195 : 1847
+  10.0.15.199 : 1602
+  10.0.12.134 : 410
+  10.0.14.115 : 106
+  - : 99
+  10.0.19.136 : 89
+  10.0.9.217 : 54
+  10.0.18.142 : 49
+  10.0.1.88 : 28
+  10.0.5.203 : 3
+  10.0.7.130 : 2
+
+6) USER-AGENT (top 10)
+  curl/8.21.0 : 30939
+  ApacheBench/2.3 : 18025
+  - : 21
+  Mozilla/5.0 (Windows NT 10.0; Win64; x64) App : 19
+  Mozilla/5.0 (compatible) : 14
+  Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1)  : 7
+  Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 lik : 7
+  Mozilla/5.0 (compatible; Infrawatch/1.0; +htt : 7
+  Mozilla/5.0 zgrab/0.x : 5
+  Mozilla/5.0 (Windows NT 10.0; Win64; x64) : 4
+
+7) REQUEST KHONG PHAI 2xx (toi da 40 dong)
+   gio(UTC) | elb | target_status | target:port | danh_sach_target | danh_sach_ma_target | user-agent
+  2026-10-23T16:18:30.757741Z | 503 | - | - | - | - | Mozilla/5.0 (Windows NT 10.0; 
+  2026-10-23T16:26:44.558995Z | 503 | - | - | - | - | Mozilla/5.0 (iPhone; CPU iPhon
+  2026-10-23T16:28:32.751562Z | 503 | - | - | - | - | Mozilla/5.0 (Macintosh; Intel 
+  2026-10-23T16:32:05.272119Z | 503 | - | - | - | - | Mozilla/5.0 (Windows NT 6.1) A
+  2026-10-23T16:32:05.814616Z | 503 | - | - | - | - | -
+  2026-10-23T16:32:06.058792Z | 503 | - | - | - | - | -
+  2026-10-23T16:32:06.499313Z | 503 | - | - | - | - | -
+  2026-10-23T16:32:10.126249Z | 503 | - | - | - | - | Mozilla/5.0 (Windows NT 10.0; 
+  2026-10-23T16:42:26.314883Z | 503 | - | - | - | - | Mozilla/5.0 (Macintosh; Intel 
+  2026-10-23T17:19:40.411378Z | 503 | - | - | - | - | Mozilla/5.0 (Windows NT 10.0; 
+  2026-10-23T17:58:33.700663Z | 503 | - | - | - | - | Mozilla/5.0 (Macintosh; Intel 
+  2026-10-23T18:28:50.314256Z | 503 | - | - | - | - | Mozilla/5.0 AppleWebKit/537.36
+  2026-10-23T19:11:16.857016Z | 503 | - | - | - | - | Mozilla/5.0
+  2026-10-23T19:11:17.114529Z | 503 | - | - | - | - | -
+  2026-10-23T19:16:52.532572Z | 503 | - | - | - | - | Mozilla/5.0 (Windows NT 10.0; 
+  2026-10-23T19:16:52.727822Z | 503 | - | - | - | - | Mozilla/5.0 (Windows NT 10.0; 
+  2026-10-23T19:16:52.950248Z | 503 | - | - | - | - | Mozilla/5.0 (Windows NT 10.0; 
+  2026-10-23T19:16:53.174589Z | 503 | - | - | - | - | Mozilla/5.0 (Windows NT 10.0; 
+  2026-10-23T19:18:33.095328Z | 503 | - | - | - | - | Mozilla/5.0 (Macintosh; Intel 
+  2026-10-23T19:26:01.974997Z | 503 | - | - | - | - | Mozilla/5.0
+  2026-10-23T19:26:03.375497Z | 503 | - | - | - | - | -
+  2026-10-23T19:31:43.316365Z | 503 | - | - | - | - | Mozilla/5.0
+  2026-10-23T19:31:44.778809Z | 503 | - | - | - | - | -
+  2026-10-23T19:36:38.868909Z | 503 | - | - | - | - | Mozilla/5.0
+  2026-10-23T19:36:40.366421Z | 503 | - | - | - | - | -
+  2026-10-23T19:40:24.964663Z | 503 | - | - | - | - | Hello from Palo Alto Networks,
+  2026-10-23T19:51:26.689461Z | 503 | - | - | - | - | python-requests/2.28.0
+  2026-10-23T19:55:42.156444Z | 503 | - | - | - | - | Mozilla/5.0 (Macintosh; Intel 
+  2026-10-23T20:12:20.512592Z | 503 | - | - | - | - | Mozilla/5.0 (compatible; Infra
+  2026-10-23T20:12:35.060955Z | 503 | - | - | - | - | Mozilla/5.0 (compatible; Infra
+  2026-10-23T20:12:35.233450Z | 503 | - | - | - | - | Mozilla/5.0 (compatible; Infra
+  2026-10-23T20:12:35.405313Z | 503 | - | - | - | - | Mozilla/5.0 (compatible; Infra
+  2026-10-23T20:12:35.406212Z | 503 | - | - | - | - | Mozilla/5.0 (compatible; Infra
+  2026-10-23T20:12:35.412879Z | 503 | - | - | - | - | Mozilla/5.0 (compatible; Infra
+  2026-10-23T20:12:45.406178Z | 503 | - | - | - | - | Mozilla/5.0 (compatible; Infra
+  2026-10-23T20:32:32.887332Z | 503 | - | - | - | - | visionheight.com/scan Mozilla/
+  2026-10-23T20:33:22.916617Z | 400 | - | - | - | - | -
+  2026-10-23T20:36:15.453862Z | 400 | - | - | - | - | -
+  2026-10-23T20:36:20.174001Z | 400 | - | - | - | - | -
+  2026-10-23T21:00:52.173906Z | 503 | - | - | - | - | Mozilla/5.0 (iPhone; CPU iPhon
+
+8) THOI GIAN XU LY CUA TARGET (target_processing_time)
+ - Request toi /cgi-bin/load.sh:
+  so luong: 47995 | trung binh: 0.048s | p50: 0.032s | p95: 0.152s | lon nhat: 0.926s
+ - Request toi trang chu (/):
+  so luong: 914 | trung binh: 0.001s | p50: 0.001s | p95: 0.001s | lon nhat: 0.049s
+
+Ghi chu: target_processing_time tinh den luc ALB nhan byte dau tien cua phan hoi,
+so voi thoi gian tong do ab/curl do duoc cho /cgi-bin/load.sh.
+==============================================
+ PHAN TICH ALB ACCESS LOG
+ Thu muc : /home/cloudshell-user/alblogs
+ Cua so  : 2026-10-24T00:48:39 -> 2026-10-24T01:00:00 (UTC)
+==============================================
+
+1) TONG QUAN
+  So dong log      : 11998
+  Dong dau (UTC)   : 2026-10-24T00:48:40.000911Z
+  Dong cuoi (UTC)  : 2026-10-24T00:59:11.253572Z
+
+2) MA TRANG THAI DO ALB TRA VE (elb_status_code)
+  200 : 11997
+  400 : 1
+
+3) MA TRANG THAI CUA TARGET (target_status_code, '-' = khong ghi nhan ma tu target)
+  - : 1
+  200 : 11997
+
+4) SO REQUEST THEO PHUT (UTC) - chi in khi co chi dinh cua so thoi gian
+  2026-10-24T00:48 : 395
+  2026-10-24T00:49 : 1200
+  2026-10-24T00:50 : 1202
+  2026-10-24T00:51 : 1200
+  2026-10-24T00:52 : 1200
+  2026-10-24T00:53 : 1200
+  2026-10-24T00:54 : 1200
+  2026-10-24T00:55 : 1200
+  2026-10-24T00:56 : 1200
+  2026-10-24T00:57 : 1200
+  2026-10-24T00:58 : 800
+  2026-10-24T00:59 : 1
+
+5) PHAN BO THEO TARGET (can bang tai; '-' = khong co target)
+  10.0.26.50 : 10396
+  10.0.15.199 : 1601
+  - : 1
+
+6) USER-AGENT (top 10)
+  curl/8.21.0 : 11994
+  Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1)  : 1
+  Hello from Palo Alto Networks, find out more  : 1
+  curl/7.74.0 : 1
+  - : 1
+
+7) REQUEST KHONG PHAI 2xx (toi da 40 dong)
+   gio(UTC) | elb | target_status | target:port | danh_sach_target | danh_sach_ma_target | user-agent
+  2026-10-24T00:50:57.042742Z | 400 | - | - | - | - | -
+
+8) THOI GIAN XU LY CUA TARGET (target_processing_time)
+ - Request toi /cgi-bin/load.sh:
+  so luong: 11994 | trung binh: 0.061s | p50: 0.047s | p95: 0.159s | lon nhat: 0.630s
+ - Request toi trang chu (/):
+  so luong: 3 | trung binh: 0.017s | p50: 0.001s | p95: 0.049s | lon nhat: 0.049s
+
+Ghi chu: target_processing_time tinh den luc ALB nhan byte dau tien cua phan hoi,
+so voi thoi gian tong do ab/curl do duoc cho /cgi-bin/load.sh.
+==============================================
+ PHAN TICH ALB ACCESS LOG
+ Thu muc : /home/cloudshell-user/alblogs
+ Cua so  : 2026-10-24T03:15:38 -> 2026-10-24T03:30:40 (UTC)
+==============================================
+
+1) TONG QUAN
+  So dong log      : 18025
+  Dong dau (UTC)   : 2026-10-24T03:15:39.000818Z
+  Dong cuoi (UTC)  : 2026-10-24T03:30:39.001457Z
+
+2) MA TRANG THAI DO ALB TRA VE (elb_status_code)
+  200 : 18020
+  502 : 5
+
+3) MA TRANG THAI CUA TARGET (target_status_code, '-' = khong ghi nhan ma tu target)
+  200 : 18020
+  - : 5
+
+4) SO REQUEST THEO PHUT (UTC) - chi in khi co chi dinh cua so thoi gian
+  2026-10-24T03:15 : 420
+  2026-10-24T03:16 : 1201
+  2026-10-24T03:17 : 1200
+  2026-10-24T03:18 : 1200
+  2026-10-24T03:19 : 1200
+  2026-10-24T03:20 : 1201
+  2026-10-24T03:21 : 1200
+  2026-10-24T03:22 : 1200
+  2026-10-24T03:23 : 1200
+  2026-10-24T03:24 : 1201
+  2026-10-24T03:25 : 1200
+  2026-10-24T03:26 : 1200
+  2026-10-24T03:27 : 1200
+  2026-10-24T03:28 : 1201
+  2026-10-24T03:29 : 1201
+  2026-10-24T03:30 : 800
+
+5) PHAN BO THEO TARGET (can bang tai; '-' = khong co target)
+  10.0.26.50 : 10362
+  10.0.5.134 : 3759
+  10.0.20.37 : 1959
+  10.0.9.203 : 1945
+
+6) USER-AGENT (top 10)
+  ApacheBench/2.3 : 18025
+
+7) REQUEST KHONG PHAI 2xx (toi da 40 dong)
+   gio(UTC) | elb | target_status | target:port | danh_sach_target | danh_sach_ma_target | user-agent
+  2026-10-24T03:16:48.004267Z | 502 | - | 10.0.26.50:80 | 10.0.26.50:80 | - | ApacheBench/2.3
+  2026-10-24T03:20:16.005710Z | 502 | - | 10.0.26.50:80 | 10.0.26.50:80 | - | ApacheBench/2.3
+  2026-10-24T03:24:04.004378Z | 502 | - | 10.0.26.50:80 | 10.0.26.50:80 | - | ApacheBench/2.3
+  2026-10-24T03:28:28.003557Z | 502 | - | 10.0.20.37:80 | 10.0.20.37:80 | - | ApacheBench/2.3
+  2026-10-24T03:29:22.003452Z | 502 | - | 10.0.26.50:80 | 10.0.26.50:80 | - | ApacheBench/2.3
+
+8) THOI GIAN XU LY CUA TARGET (target_processing_time)
+ - Request toi /cgi-bin/load.sh:
+  so luong: 18025 | trung binh: 0.047s | p50: 0.032s | p95: 0.153s | lon nhat: 0.454s
+ - Request toi trang chu (/):
+  khong co du lieu
+
+Ghi chu: target_processing_time tinh den luc ALB nhan byte dau tien cua phan hoi,
+so voi thoi gian tong do ab/curl do duoc cho /cgi-bin/load.sh.
+==============================================
+ PHAN TICH ALB ACCESS LOG
+ Thu muc : /home/cloudshell-user/alblogs
+ Cua so  : 2026-10-29T11:55:22 -> 2026-10-29T12:11:22 (UTC)
+==============================================
+
+1) TONG QUAN
+  So dong log      : 17974
+  Dong dau (UTC)   : 2026-10-29T11:55:24.000712Z
+  Dong cuoi (UTC)  : 2026-10-29T12:10:22.001650Z
+
+2) MA TRANG THAI DO ALB TRA VE (elb_status_code)
+  200 : 17974
+
+3) MA TRANG THAI CUA TARGET (target_status_code, '-' = khong ghi nhan ma tu target)
+  200 : 17974
+
+4) SO REQUEST THEO PHUT (UTC) - chi in khi co chi dinh cua so thoi gian
+  2026-10-29T11:55 : 720
+  2026-10-29T11:56 : 1200
+  2026-10-29T11:57 : 1200
+  2026-10-29T11:58 : 1200
+  2026-10-29T11:59 : 1200
+  2026-10-29T12:00 : 1194
+  2026-10-29T12:01 : 1200
+  2026-10-29T12:02 : 1200
+  2026-10-29T12:03 : 1200
+  2026-10-29T12:04 : 1200
+  2026-10-29T12:05 : 1200
+  2026-10-29T12:06 : 1200
+  2026-10-29T12:07 : 1200
+  2026-10-29T12:08 : 1200
+  2026-10-29T12:09 : 1200
+  2026-10-29T12:10 : 460
+
+5) PHAN BO THEO TARGET (can bang tai; '-' = khong co target)
+  10.0.19.246 : 10472
+  10.0.2.206 : 3736
+  10.0.16.110 : 1919
+  10.0.14.195 : 1847
+
+6) USER-AGENT (top 10)
+  curl/8.21.0 : 17974
+
+7) REQUEST KHONG PHAI 2xx (toi da 40 dong)
+   gio(UTC) | elb | target_status | target:port | danh_sach_target | danh_sach_ma_target | user-agent
+
+8) THOI GIAN XU LY CUA TARGET (target_processing_time)
+ - Request toi /cgi-bin/load.sh:
+  so luong: 17974 | trung binh: 0.041s | p50: 0.025s | p95: 0.140s | lon nhat: 0.926s
+ - Request toi trang chu (/):
+  khong co du lieu
+
+Ghi chu: target_processing_time tinh den luc ALB nhan byte dau tien cua phan hoi,
+so voi thoi gian tong do ab/curl do duoc cho /cgi-bin/load.sh.
+==============================================
+ PHAN TICH ALB ACCESS LOG
+ Thu muc : /home/cloudshell-user/alblogs
+ Cua so  : 2026-10-29T11:12:00 -> 2026-10-29T11:23:00 (UTC)
+==============================================
+
+1) TONG QUAN
+  So dong log      : 546
+  Dong dau (UTC)   : 2026-10-29T11:12:52.294816Z
+  Dong cuoi (UTC)  : 2026-10-29T11:22:28.446809Z
+
+2) MA TRANG THAI DO ALB TRA VE (elb_status_code)
+  200 : 468
+  403 : 1
+  460 : 3
+  502 : 36
+  503 : 38
+
+3) MA TRANG THAI CUA TARGET (target_status_code, '-' = khong ghi nhan ma tu target)
+  200 : 468
+  403 : 1
+  - : 77
+
+4) SO REQUEST THEO PHUT (UTC) - chi in khi co chi dinh cua so thoi gian
+  2026-10-29T11:12 : 8
+  2026-10-29T11:13 : 58
+  2026-10-29T11:14 : 59
+  2026-10-29T11:15 : 59
+  2026-10-29T11:16 : 44
+  2026-10-29T11:17 : 56
+  2026-10-29T11:18 : 58
+  2026-10-29T11:19 : 59
+  2026-10-29T11:20 : 58
+  2026-10-29T11:21 : 59
+  2026-10-29T11:22 : 28
+
+5) PHAN BO THEO TARGET (can bang tai; '-' = khong co target)
+  10.0.12.134 : 317
+  10.0.14.115 : 102
+  10.0.19.136 : 89
+  - : 38
+
+6) USER-AGENT (top 10)
+  curl/8.21.0 : 545
+  Mozilla/5.0 (Windows NT 10.0; Win64; x64) App : 1
+
+7) REQUEST KHONG PHAI 2xx (toi da 40 dong)
+   gio(UTC) | elb | target_status | target:port | danh_sach_target | danh_sach_ma_target | user-agent
+  2026-10-29T11:15:57.016346Z | 502 | - | 10.0.14.115:80 | 10.0.14.115:80 | - | curl/8.21.0
+  2026-10-29T11:15:58.041731Z | 502 | - | 10.0.14.115:80 | 10.0.14.115:80 | - | curl/8.21.0
+  2026-10-29T11:15:59.066225Z | 502 | - | 10.0.14.115:80 | 10.0.14.115:80 | - | curl/8.21.0
+  2026-10-29T11:16:00.096344Z | 502 | - | 10.0.14.115:80 | 10.0.14.115:80 | - | curl/8.21.0
+  2026-10-29T11:16:01.122427Z | 502 | - | 10.0.14.115:80 | 10.0.14.115:80 | - | curl/8.21.0
+  2026-10-29T11:16:02.151662Z | 502 | - | 10.0.14.115:80 | 10.0.14.115:80 | - | curl/8.21.0
+  2026-10-29T11:16:03.174463Z | 502 | - | 10.0.14.115:80 | 10.0.14.115:80 | - | curl/8.21.0
+  2026-10-29T11:16:09.196071Z | 460 | - | 10.0.14.115:80 | 10.0.14.115:80 | - | curl/8.21.0
+  2026-10-29T11:16:15.220101Z | 460 | - | 10.0.14.115:80 | 10.0.14.115:80 | - | curl/8.21.0
+  2026-10-29T11:16:21.240814Z | 460 | - | 10.0.14.115:80 | 10.0.14.115:80 | - | curl/8.21.0
+  2026-10-29T11:16:22.262841Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:23.285477Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:24.308066Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:25.336153Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:26.358435Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:27.381332Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:28.405263Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:29.431607Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:30.453628Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:31.475223Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:32.499241Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:33.536403Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:34.566793Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:35.588775Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:36.610973Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:37.637561Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:38.660823Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:39.684297Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:40.707022Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:41.738758Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:42.760527Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:43.783449Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:44.806800Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:45.834491Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:46.859726Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:47.881266Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:48.903672Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:49.930662Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:50.953043Z | 503 | - | - | - | - | curl/8.21.0
+  2026-10-29T11:16:51.978926Z | 503 | - | - | - | - | curl/8.21.0
+
+8) THOI GIAN XU LY CUA TARGET (target_processing_time)
+ - Request toi /cgi-bin/load.sh:
+  khong co du lieu
+ - Request toi trang chu (/):
+  so luong: 469 | trung binh: 0.001s | p50: 0.001s | p95: 0.001s | lon nhat: 0.022s
+
+Ghi chu: target_processing_time tinh den luc ALB nhan byte dau tien cua phan hoi,
+so voi thoi gian tong do ab/curl do duoc cho /cgi-bin/load.sh.
+==============================================
+ PHAN TICH ALB ACCESS LOG
+ Thu muc : /home/cloudshell-user/alblogs
+ Cua so  : 2026-10-29T11:37:00 -> 2026-10-29T11:43:00 (UTC)
+==============================================
+
+1) TONG QUAN
+  So dong log      : 291
+  Dong dau (UTC)   : 2026-10-29T11:37:00.905680Z
+  Dong cuoi (UTC)  : 2026-10-29T11:42:45.900214Z
+
+2) MA TRANG THAI DO ALB TRA VE (elb_status_code)
+  200 : 286
+  460 : 2
+  502 : 3
+
+3) MA TRANG THAI CUA TARGET (target_status_code, '-' = khong ghi nhan ma tu target)
+  200 : 286
+  - : 5
+
+4) SO REQUEST THEO PHUT (UTC) - chi in khi co chi dinh cua so thoi gian
+  2026-10-29T11:37 : 22
+  2026-10-29T11:38 : 58
+  2026-10-29T11:39 : 49
+  2026-10-29T11:40 : 58
+  2026-10-29T11:41 : 59
+  2026-10-29T11:42 : 45
+
+5) PHAN BO THEO TARGET (can bang tai; '-' = khong co target)
+  10.0.19.246 : 203
+  10.0.12.134 : 60
+  10.0.1.88 : 28
+
+6) USER-AGENT (top 10)
+  curl/8.21.0 : 291
+
+7) REQUEST KHONG PHAI 2xx (toi da 40 dong)
+   gio(UTC) | elb | target_status | target:port | danh_sach_target | danh_sach_ma_target | user-agent
+  2026-10-29T11:39:34.309433Z | 502 | - | 10.0.12.134:80 | 10.0.12.134:80 | - | curl/8.21.0
+  2026-10-29T11:39:35.338911Z | 502 | - | 10.0.12.134:80 | 10.0.12.134:80 | - | curl/8.21.0
+  2026-10-29T11:39:36.361428Z | 502 | - | 10.0.12.134:80 | 10.0.12.134:80 | - | curl/8.21.0
+  2026-10-29T11:39:44.435064Z | 460 | - | 10.0.12.134:80 | 10.0.12.134:80 | - | curl/8.21.0
+  2026-10-29T11:39:50.456833Z | 460 | - | 10.0.12.134:80 | 10.0.12.134:80 | - | curl/8.21.0
+
+8) THOI GIAN XU LY CUA TARGET (target_processing_time)
+ - Request toi /cgi-bin/load.sh:
+  khong co du lieu
+ - Request toi trang chu (/):
+  so luong: 286 | trung binh: 0.001s | p50: 0.001s | p95: 0.001s | lon nhat: 0.028s
+
+Ghi chu: target_processing_time tinh den luc ALB nhan byte dau tien cua phan hoi,
+so voi thoi gian tong do ab/curl do duoc cho /cgi-bin/load.sh.

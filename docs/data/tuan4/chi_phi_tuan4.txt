@@ -1,0 +1,40 @@
+==================================================================
+ UOC TINH CHI PHI (USD) - tu 2026-10-19
+==================================================================
+
+1) EC2 t3.micro (tinh theo giay, lam tron khi in)
+  i-0c87186aa563a148d    24/10 07:27 -> 24/10 10:47    3.33 gio
+  i-0b88c92d4f41e8899    24/10 07:55 -> 24/10 08:16    0.37 gio
+  i-0d65ceddf88abd75e    24/10 07:58 -> 24/10 08:17    0.33 gio
+  i-0b53539d8be12855b    24/10 07:58 -> 24/10 08:16    0.30 gio
+  i-0561d0449ded41256    24/10 10:20 -> 24/10 10:51    0.53 gio
+  i-02cb72d1e0e17ffba    24/10 10:23 -> 24/10 10:46    0.39 gio
+  i-00d330bb49f0d3fa5    24/10 10:23 -> 24/10 10:56    0.55 gio
+  i-0399d18d5afe337e3    24/10 19:45 -> 24/10 20:21    0.61 gio
+  i-04b55d185dec1de88    24/10 20:13 -> 24/10 20:19    0.10 gio
+  i-0f83d8bbfe199d81a    24/10 21:05 -> 24/10 21:06    0.02 gio
+  i-0b01b49e07fc219c1    29/10 18:01 -> 29/10 18:16    0.26 gio
+  i-01957336baea1590f    29/10 18:09 -> 29/10 18:15    0.11 gio
+  i-0ce16b58a14350e17    29/10 18:16 -> 29/10 18:40    0.40 gio
+  i-0322d8a8ed139be6c    29/10 18:34 -> 29/10 19:58    1.39 gio
+  i-0b3a1ac7841e35d04    29/10 18:40 -> 29/10 18:53    0.21 gio
+  i-04dcc8276b5048261    29/10 19:00 -> 29/10 19:27    0.45 gio
+  i-0eacdf149eb34ef87    29/10 19:03 -> 29/10 19:28    0.42 gio
+  i-09c103f491b7a44b1    29/10 19:03 -> 29/10 19:26    0.39 gio
+  i-0469467cb05ac9f26 (s 10-24 21:01 -> 10-24 21:08    0.12 gio  (them tay)
+  Tong: 10.27 instance-gio -> EC2 0.1069 | public IPv4 0.0514 | EBS 0.0090
+
+2) ALB (moi gio le tinh tron 1 gio)
+  ALB tuan 3 (qua dem 23-24/10)      10-23 22:37 -> 10-24 10:56   12.32 gio thuc te, tinh 13 gio
+  ALB toi 24/10 (ngay 4 tuan 3)      10-24 19:40 -> 10-24 20:22    0.70 gio thuc te, tinh 1 gio
+  ALB do CloudFormation tao (24/10)  10-24 20:59 -> 10-24 21:09    0.17 gio thuc te, tinh 1 gio
+  ALB tuan 4 - ngay 1 (29/10)        10-29 17:54 -> 10-29 19:58    2.07 gio thuc te, tinh 3 gio
+  Tong: 18 gio ALB -> ALB 0.4050 | public IPv4 cua ALB 0.1800
+
+3) S3: 0.001 GB luu tru -> 0.0000 USD/thang (rat nho)
+
+------------------------------------------------------------------
+ TONG UOC TINH: 0.7523 USD
+------------------------------------------------------------------
+ So lieu that: trang Learner Lab ('Used $x of $50'), chup truoc va sau tung buoi.
+ Khong tinh: LCU (neu LCU_PER_HOUR = 0), CloudWatch, truyen du lieu, phi tin dung CPU vuot muc.
