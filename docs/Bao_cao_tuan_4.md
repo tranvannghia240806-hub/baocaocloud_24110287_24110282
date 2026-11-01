@@ -36,7 +36,12 @@
 
 Link commit:
 
-**[ĐIỀN: dán link và mô tả từng commit tuần 4, ví dụ: abc1234 - "Them script phan tich ALB access log va ket qua kiem thu AZ" (ngày)]**
+1. [8dc925e](https://github.com/tranvannghia240806-hub/baocaocloud_24110287_24110282/commit/8dc925ec57872360cff34232b077e722b7cedc37) - "Tuan 4: Them script phan tich ALB logs va chi phi"
+2. [91cde60](https://github.com/tranvannghia240806-hub/baocaocloud_24110287_24110282/commit/91cde60edf94950a8398f74e6291dc051828ea49) - "Tuan 4: Them du lieu kiem thu va phan tich log"
+3. [d3a5f15](https://github.com/tranvannghia240806-hub/baocaocloud_24110287_24110282/commit/d3a5f15b2ed4969deb49c9bd645fa20f5fa5a352) - "Tuan 4: Minh chung AWS, CloudFormation va video demo"
+4. [6207f2d](https://github.com/tranvannghia240806-hub/baocaocloud_24110287_24110282/commit/6207f2d9a3a59f099225d464a44e20b9c293751a) - "Tuan 4: Dong bo script, du lieu va anh theo bao cao cuoi"
+5. [81094a4](https://github.com/tranvannghia240806-hub/baocaocloud_24110287_24110282/commit/81094a4ab71b0da205acc1470c8e32b72253e6d1) - "Tuan 4: Hoan thien bao cao cuoi ky va README"
+6. [f8a8bdf](https://github.com/tranvannghia240806-hub/baocaocloud_24110287_24110282/commit/f8a8bdf2689d8e4fe97a6016b77f1e3b5ed69ed4) - "bo sung bang phan cong"
 
 Ảnh minh chứng nằm trong thư mục [docs/images/tuan4/](https://github.com/tranvannghia240806-hub/baocaocloud_24110287_24110282/tree/main/docs/images/tuan4); link từng ảnh ghi ngay dưới mỗi hình.
 
@@ -55,7 +60,7 @@ Theo kế hoạch của giảng viên, tuần 4 gồm: kiểm thử tổng thể
 - Dọn dẹp toàn bộ tài nguyên trên Learner Lab và ghi lại bằng ảnh.
 - Quay video demo (không quá 10 phút) và hoàn thiện báo cáo phân tích cuối kỳ.
 
-Tiến độ tại thời điểm cập nhật (01/11/2026): cả năm ngày đã có kết quả. Ngày 1 (kiểm thử mất instance ở một AZ và tải lần 3, 29/10), Ngày 2 (phân tích ALB access log, 30/10), Ngày 3 (tối ưu chi phí và thử scheduled scaling, 31/10) được ghi trong mục 4, 5 và 6; Ngày 4 (video demo, kiểm thử AZ trực tiếp, 01/11) trong mục 4.2.3, 6.6 và 8; Ngày 5 (dọn dẹp tổng thể, kiểm tra CloudFormation, hồ sơ nộp) trong mục 7 và 14. Link commit chỉ điền sau khi đã commit và push.
+Tiến độ tại thời điểm cập nhật (01/11/2026): cả năm ngày đã có kết quả. Ngày 1 (kiểm thử mất instance ở một AZ và tải lần 3, 29/10), Ngày 2 (phân tích ALB access log, 30/10), Ngày 3 (tối ưu chi phí và thử scheduled scaling, 31/10) được ghi trong mục 4, 5 và 6; Ngày 4 (video demo, kiểm thử AZ trực tiếp, 01/11) trong mục 4.2.3, 6.6 và 8; Ngày 5 (dọn dẹp tổng thể, kiểm tra CloudFormation, hồ sơ nộp) trong mục 7 và 14.
 
 # 2. Phân công công việc
 
@@ -656,7 +661,7 @@ Hai cách tính ALB khác nhau do làm tròn giờ; bảng 6.2 dùng cách làm 
 
 Thứ tự xóa đi từ tài nguyên tính phí theo giờ đến tài nguyên cấu hình. Launch Template không còn cần thiết vì user data và template CloudFormation đã lưu trên Git và có thể dựng lại.
 
-Cuối Ngày 1 (29/10), sau khi kết thúc các bài kiểm thử có dùng ALB, nhóm đặt HA-Web-ASG về min 0 / desired 0 / max 4 và xóa HA-Web-ALB lúc 19:58 (thông báo "Successfully deleted load balancer" cho ALB HA-Web-ALB). Các tài nguyên còn lại được giữ để dùng ở Ngày 2–4 và dọn dẹp tổng thể ở Ngày 5. Chưa Reset Lab.
+Cuối Ngày 1 (29/10), sau khi kết thúc các bài kiểm thử có dùng ALB, nhóm đặt HA-Web-ASG về min 0 / desired 0 / max 4 và xóa HA-Web-ALB lúc 19:58 (thông báo "Successfully deleted load balancer" cho ALB HA-Web-ALB). Các tài nguyên còn lại được giữ để dùng ở Ngày 2–4 và dọn dẹp tổng thể ở Ngày 5. Chưa bấm Reset Lab.
 
 ![Hình 7A - ảnh 1](images/tuan4/hinh07_don_dep_ngay1_1.png)
 
@@ -720,7 +725,7 @@ Ngày 5, nhóm rà soát toàn bộ tài nguyên dự án ở us-east-1:
 
 *Hình 7C. Ngày 5: ảnh 1, không còn Auto Scaling Group; ảnh 2, không còn ALB; ảnh 3, Launch Template và Target Group đã xóa; ảnh 4, EC2 chỉ còn Terminated, Volumes và Elastic IP trống; ảnh 5, Alarms (0) và Dashboards (0)*
 
-Việc rà soát chỉ gồm các tài nguyên chính liệt kê ở bảng; không phải kiểm toán mọi dịch vụ có thể phát sinh phí. Chưa Reset Lab.
+Việc rà soát chỉ gồm các tài nguyên chính liệt kê ở bảng; không phải kiểm toán mọi dịch vụ có thể phát sinh phí. Chưa bấm Reset Lab.
 
 # 8. Video demo
 
