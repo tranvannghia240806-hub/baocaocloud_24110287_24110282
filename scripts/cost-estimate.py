@@ -34,14 +34,14 @@ LCU_PER_HOUR = 0.0            # dat > 0 neu muon tinh LCU (vi du 1.0 trong luc c
 ALB_IPV4_PER_ALB = 2          # ALB 2 AZ giu 2 dia chi IPv4 (gia dinh)
 EC2_IPV4_PER_INSTANCE = 1     # instance o public subnet co 1 public IPv4
 EBS_GB_PER_INSTANCE = 8       # o dia goc cua AMI Amazon Linux 2023 (gia dinh 8 GB)
-S3_GB_STORED = 0.001          # dung luong log tren S3 (GB); xem: aws s3 ls --summarize --recursive
+S3_GB_STORED = 0.003443615          # dung luong log tren S3 (GB); xem: aws s3 ls --summarize --recursive
 
 # Cac khoang thoi gian ALB chay (gio Viet Nam, dang "YYYY-MM-DD HH:MM"). Dat None neu chua biet.
 ALB_INTERVALS = [
     ("ALB tuan 3 (qua dem 23-24/10)", "2026-10-23 22:37", "2026-10-24 10:56"),
-    ("ALB toi 24/10 (ngay 4 tuan 3)", None, "2026-10-24 20:22"),          # SUA: gio tao ALB
-    ("ALB do CloudFormation tao (24/10)", "2026-10-24 20:59", "2026-10-24 21:08"),
-    ("ALB tuan 4 - ngay 1 (29/10)", None, "2026-10-29 19:58"),             # SUA: gio tao ALB (lay tu CloudTrail)
+    ("ALB toi 24/10 (ngay 4 tuan 3)", "2026-10-24 19:40", "2026-10-24 20:22"),   # CloudTrail
+    ("ALB do CloudFormation tao (24/10)", "2026-10-24 20:59", "2026-10-24 21:09"),
+    ("ALB tuan 4 - ngay 1 (29/10)", "2026-10-29 17:54", "2026-10-29 19:58"),   # CloudTrail
     # ("ALB tuan 4 - ngay 4 (quay video)", "2026-11-01 hh:mm", "2026-11-01 hh:mm"),   # THEM cac buoi sau
 ]
 
