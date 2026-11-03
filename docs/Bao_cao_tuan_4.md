@@ -32,7 +32,7 @@
 12. [docs/data/tuan4/phan_tich_log_tuan4.txt](https://github.com/tranvannghia240806-hub/baocaocloud_24110287_24110282/blob/main/docs/data/tuan4/phan_tich_log_tuan4.txt)
 13. [docs/data/tuan4/chi_phi_tuan4.txt](https://github.com/tranvannghia240806-hub/baocaocloud_24110287_24110282/blob/main/docs/data/tuan4/chi_phi_tuan4.txt)
 
-**Video demo:** [https://youtu.be/SzbixCAcb0s](https://youtu.be/SzbixCAcb0s) (YouTube, chế độ Không công khai, thời lượng 09:45)
+**Video demo:** [https://youtu.be/SzbixCAcb0s](https://www.youtube.com/watch?v=SzbixcACb0s) (YouTube, chế độ Không công khai, thời lượng 09:45)
 
 Link commit:
 
